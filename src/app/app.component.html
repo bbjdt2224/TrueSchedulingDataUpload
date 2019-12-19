@@ -1,0 +1,36 @@
+<input type="file" (change)="readFile($event.target.files)">
+
+<table *ngIf="classes">
+    <!-- <tr *ngFor="let c of classes">
+    <td>
+      {{c.semester}}
+    </td>
+  </tr> -->
+</table>
+
+<hr>
+<br>
+<input [(ngModel)]="year" type="number" min="2000" max="2999" step="1">
+<select [(ngModel)]="semester">
+    <option value="Spring">Spring</option>
+    <option value="Summer I">Summer I</option>
+    <option value="Summer II">Summer II</option>
+    <option value="Fall">Fall</option>
+</select> 
+<table>
+    <tr *ngFor="let label of labels; let i = index">
+        <td [innerText]="label"></td>
+        <td>
+            <select [(ngModel)]="selectedDays[i]">
+                <option *ngFor="let day of examDays" [value]="day.id">{{day.value}}</option>
+            </select>
+        </td>
+        <td>
+            <select [(ngModel)]="selectedTimes[i]">
+                <option *ngFor="let time of examTimes" [value]="time.id">{{time.value}}</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<button (click)="submitFinals()">Submit Finals</button>
